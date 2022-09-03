@@ -21,6 +21,7 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
+            
             Debug.Log("Thruster Activated");
         }
 
