@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    Rigidbody rb; 
+    [SerializeField] float mainThrust = 100f;
+    [SerializeField] float mainRotation = 100f;
+
+
+
     // Start is called before the first frame update
+
     void Start()
     {
-        
+        rb=GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
@@ -21,32 +29,28 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            
-            Debug.Log("Thruster Activated");
-        }
-
-         if (Input.GetKey(KeyCode.A))
-        {
-            Debug.Log("Moving Up");
-        }
-
-         else if (Input.GetKey(KeyCode.D))
-        {
-            Debug.Log("Moving Down");
+            Debug.Log("Thrust");
+            rb.AddRelativeForce(Vector3.up * mainThrust *Time.deltaTime);
         }
 
     }
 
     void ProcessRotation()
     {
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.A))
         {
-            Debug.Log("Moving Left");
+    
+            ApplyRotation(mainRotation);
         }
 
-         else if (Input.GetKey(KeyCode.W))
+        else if (Input.GetKey(KeyCode.D))
         {
-            Debug.Log("Moving Right");
+            ApplyRotation(-mainRotation);
         }
+    }
+
+     void ApplyRotation(float rotationThisFrame)
+    {
+        transform.Rotate(Vector3.forward * mainRotation * Time.deltaTime);
     }
 }
