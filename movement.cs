@@ -29,7 +29,7 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-        
+    
             rb.AddRelativeForce(Vector3.up * mainThrust *Time.deltaTime);
         }
 
@@ -51,6 +51,9 @@ public class Movement : MonoBehaviour
 
      void ApplyRotation(float rotationThisFrame)
     {
+        //to maintain the rocket after it collides with other objects
+        rb.freezeRotation = true;
         transform.Rotate(Vector3.forward * mainRotation * Time.deltaTime);
+        rb.freezeRotation = false;
     }
 }
